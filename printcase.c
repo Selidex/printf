@@ -3,56 +3,66 @@
 /**
  * printchar - prints char
  * @c: char to print
+ * @buffer: buffer to print
+ * @i: place in buffer
  * Return: 1
  */
 
-int printchar(char c)
+int printchar(char c, char *buffer, int *i)
 {
-	write(1, &c, 1);
+	buffer[*i] = c;
+	(*i)++;
 	return (1);
 }
 
 /**
  * printstr - prints string
  * @str: string
+ * @buffer: buffer to print
+ * @i: place in buffer
  * Return: count of chars printed
  */
 
-int printstr(char *str)
+int printstr(char *str, char *buffer, int *i)
 {
-	int i;
+	int j;
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (j = 0; str[j] != '\0'; j++)
 	{
-		write(1, &str[i], 1);
+		buffer[*i] = str[j];
+		(*i)++;
 	}
-	return (i);
+	return (j);
 }
 
 /**
  * printint - prints int
- * @i: int
+ * @n: int
+ * @buffer: buffer to print
+ * @i: place in buffer
  * Return: count of chars printed
  */
 
-int printint(int i)
+int printint(int n, char *buffer, int *i)
 {
 	int b = 0, k, count = 1;
 	char neg = '-';
 
-	if (i < 0)
+	if (n < 0)
 	{
 		b = 1;
-		i = (i * -1);
+		n = (n * -1);
 	}
 	if (b == 1)
 	{
-		write(1, &neg, 1);
+		buffer[*i] = neg;
+		(*i)++;
 		count++;
 	}
-	if (i / 10 != 0)
-		count += printint(i / 10);
-	k = (i % 10) + '0';
-	write(1, &k, 1);
+	if (n / 10 != 0)
+		count += printint((n / 10), buffer, i);
+	k = (n % 10) + '0';
+	buffer[*i] = k;
+	(*i)++;
 	return (count);
 }

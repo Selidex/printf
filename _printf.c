@@ -1,6 +1,23 @@
 #include "holberton.h"
 
 /**
+ * _write - writes buffer
+ * @buffer: buffer to print
+ * Return: count of characters
+ */
+
+int _write(char *buffer)
+{
+	int i;
+
+	for (i = 0; buffer[i] != '\0'; i++)
+	{
+		write(1, &buffer[i], 1);
+	}
+	return (i);
+}
+
+/**
  * _printf - produces output according to format
  * @format: format of input
  *
@@ -10,23 +27,32 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int count = 0, i = 0;
+	int count = 0, *i, j = 0;
+	char buffer[1024];
 
+	i = malloc(sizeof(int));
+	if (!i)
+		return (-1);
+	*i = 0;
 	if (format == NULL)
 		return (0);
 	va_start(ap, format);
-	for (; format[i] != '\0'; i++)
+	for (; format[j] != '\0'; j++)
 	{
-		if (format[i] == '%')
+		if (format[j] == '%')
 		{
-			count += choose(format[i + 1], ap);
-			i++;
+			count += choose(format[j + 1], ap, buffer, i);
+			j++;
 		}
 		else
 		{
-			write(1, &format[i], 1);
+			buffer[*i] = format[j];
+			(*i)++;
 			count++;
 		}
 	}
+	buffer[*i] = '\0';
+	count = _write(buffer);
+	free(i);
 	return (count);
 }

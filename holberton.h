@@ -8,9 +8,9 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-int choose(const char c, va_list ap);
-int printint(int i);
-int printchar(char c);
-int printstr(char *str);
+int choose(const char c, va_list ap, char *buffer, int *i);
+int printint(int n, char *buffer, int *i);
+int printchar(char c, char *buffer, int *i);
+int printstr(char *str, char *buffer, int *i);
 
 #endif /* HOLBERTON_H */
