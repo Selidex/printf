@@ -37,8 +37,19 @@ int printstr(char *str)
 
 int printint(int i)
 {
-	int k, count = 1;
+	int b = 0, k, count = 1;
+	char neg = '-';
 
+	if (i < 0)
+	{
+		b = 1;
+		i = (i * -1);
+	}
+	if (b == 1)
+	{
+		write(1, &neg, 1);
+		count++;
+	}
 	if (i / 10 != 0)
 		count += printint(i / 10);
 	k = (i % 10) + '0';
