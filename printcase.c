@@ -26,6 +26,7 @@ int printchar(char c, char *buffer, placement *place)
 int printstr(char *str, char *buffer, placement *place)
 {
 	int j;
+
 	if (str == NULL)
 		str = "(null)";
 	for (j = 0; str[j] != '\0'; j++)
@@ -46,9 +47,14 @@ int printstr(char *str, char *buffer, placement *place)
 
 int printint(int n, char *buffer, placement *place)
 {
-	int b = 0, k, count = 1;
+	int b = 0, min = 0, k, count = 1;
 	char neg = '-';
 
+	if (n == -2147483648)
+	{
+		min = 1;
+		n = n / 10;
+	}
 	if (n < 0)
 	{
 		b = 1;
@@ -65,5 +71,10 @@ int printint(int n, char *buffer, placement *place)
 	k = (n % 10) + '0';
 	buffer[place->i] = k;
 	icount(buffer, place);
+	if (min == 1)
+	{
+		buffer[place->i] = '8';
+		icount(buffer, place);
+	}
 	return (count);
 }
