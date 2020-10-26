@@ -23,8 +23,11 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	int count = 0, *i, j = 0;
-	char buffer[1024];
+	char *buffer;
 
+	buffer = malloc(1024);
+	if (!buffer)
+		return (-1);
 	i = malloc(sizeof(int));
 	if (!i)
 		return (-1);
@@ -49,5 +52,6 @@ int _printf(const char *format, ...)
 	buffer[*i] = '\0';
 	count = _write(buffer, *i);
 	free(i);
+	free(buffer);
 	return (count);
 }
