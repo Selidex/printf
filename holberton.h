@@ -7,6 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
+int _write(char *buffer);
 int _printf(const char *format, ...);
 int choose(const char c, va_list ap, char *buffer, int *i);
 int printint(int n, char *buffer, int *i);
