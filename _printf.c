@@ -1,5 +1,17 @@
 #include "holberton.h"
 
+void icount(char *buffer, struct placement *place)
+{
+	if (place->i < 1023)
+		(place->i)++;
+	else
+	{
+		_write(buffer, place->i);
+		place->i = 0;
+		(place->count)++;
+	}
+}
+
 /**
  * _write - writes buffer
  * @buffer: buffer to print
@@ -13,6 +25,24 @@ int _write(char *buffer, int n)
 }
 
 /**
+ *
+ *
+ *
+ *
+ */
+
+placement *placeholder(void)
+{
+	placement *place;
+	place = malloc(sizeof(placement));
+	if (place == NULL)
+		return (NULL);
+	place->i = 0;
+	place->count = 0;
+	return (place);
+}
+
+/**
  * _printf - produces output according to format
  * @format: format of input
  *
@@ -22,16 +52,16 @@ int _write(char *buffer, int n)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int count = 0, *i, j = 0;
+	int count = 0, j = 0;
 	char *buffer;
+	struct placement *place;
 
 	buffer = malloc(1024);
 	if (!buffer)
 		return (-1);
-	i = malloc(sizeof(int));
-	if (!i)
+	place = placeholder();
+	if (!place)
 		return (-1);
-	*i = 0;
 	if (format == NULL)
 		return (0);
 	va_start(ap, format);
@@ -39,19 +69,20 @@ int _printf(const char *format, ...)
 	{
 		if (format[j] == '%')
 		{
-			count += choose(format[j + 1], ap, buffer, i);
+			count += choose(format[j + 1], ap, buffer, place);
 			j++;
 		}
 		else
 		{
-			buffer[*i] = format[j];
-			(*i)++;
+			buffer[place->i] = format[j];
+			icount(buffer, place);
 			count++;
 		}
 	}
-	buffer[*i] = '\0';
-	count = _write(buffer, *i);
-	free(i);
+	buffer[place->i] = '\0';
+	_write(buffer, place->i);
+	count = ((place->count * 1024) + place->i);
+	free(place);
 	free(buffer);
-	return (count);
+	return (count - 1);
 }

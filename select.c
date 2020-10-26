@@ -9,29 +9,29 @@
  * Return: count of chars printed
  */
 
-int choose(const char c, va_list ap, char *buffer, int *i)
+int choose(const char c, va_list ap, char *buffer, placement *place)
 {
 	char r;
 
 	switch (c)
 	{
 	case 'c':
-		return (printchar(va_arg(ap, int), buffer, i));
+		return (printchar(va_arg(ap, int), buffer, place));
 	case 's':
-		return (printstr(va_arg(ap, char *), buffer, i));
+		return (printstr(va_arg(ap, char *), buffer, place));
 	case 'i': case 'd':
-		return (printint(va_arg(ap, int), buffer, i));
+		return (printint(va_arg(ap, int), buffer, place));
 	case '%':
 		r = '%';
-		buffer[*i] = r;
-		(*i)++;
+		buffer[place->i] = r;
+		icount(buffer, place);
 		return (1);
 	default:
 		r = '%';
-		buffer[*i] = r;
-		(*i)++;
-		buffer[*i] = c;
-		(*i)++;
+		buffer[place->i] = r;
+		icount(buffer, place);
+		buffer[place->i] = c;
+		icount(buffer, place);
 		return (2);
 	}
 }

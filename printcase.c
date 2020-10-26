@@ -8,10 +8,10 @@
  * Return: 1
  */
 
-int printchar(char c, char *buffer, int *i)
+int printchar(char c, char *buffer, placement *place)
 {
-	buffer[*i] = c;
-	(*i)++;
+	buffer[place->i] = c;
+	icount(buffer, place);
 	return (1);
 }
 
@@ -23,14 +23,14 @@ int printchar(char c, char *buffer, int *i)
  * Return: count of chars printed
  */
 
-int printstr(char *str, char *buffer, int *i)
+int printstr(char *str, char *buffer, placement *place)
 {
 	int j;
 
 	for (j = 0; str[j] != '\0'; j++)
 	{
-		buffer[*i] = str[j];
-		(*i)++;
+		buffer[place->i] = str[j];
+		icount(buffer, place);
 	}
 	return (j);
 }
@@ -43,7 +43,7 @@ int printstr(char *str, char *buffer, int *i)
  * Return: count of chars printed
  */
 
-int printint(int n, char *buffer, int *i)
+int printint(int n, char *buffer, placement *place)
 {
 	int b = 0, k, count = 1;
 	char neg = '-';
@@ -55,14 +55,14 @@ int printint(int n, char *buffer, int *i)
 	}
 	if (b == 1)
 	{
-		buffer[*i] = neg;
-		(*i)++;
+		buffer[place->i] = neg;
+		icount(buffer, place);
 		count++;
 	}
 	if (n / 10 != 0)
-		count += printint((n / 10), buffer, i);
+		count += printint((n / 10), buffer, place);
 	k = (n % 10) + '0';
-	buffer[*i] = k;
-	(*i)++;
+	buffer[place->i] = k;
+	icount(buffer, place);
 	return (count);
 }
