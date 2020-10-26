@@ -5,7 +5,7 @@
  * @c: selector
  * @ap: arguments
  * @buffer: buffer to print
- * @i: location within buffer
+ * @place: location within buffer
  * Return: count of chars printed
  */
 

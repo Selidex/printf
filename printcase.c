@@ -4,7 +4,7 @@
  * printchar - prints char
  * @c: char to print
  * @buffer: buffer to print
- * @i: place in buffer
+ * @place: place in buffer
  * Return: 1
  */
 
@@ -19,7 +19,7 @@ int printchar(char c, char *buffer, placement *place)
  * printstr - prints string
  * @str: string
  * @buffer: buffer to print
- * @i: place in buffer
+ * @place: place in buffer
  * Return: count of chars printed
  */
 
@@ -39,7 +39,7 @@ int printstr(char *str, char *buffer, placement *place)
  * printint - prints int
  * @n: int
  * @buffer: buffer to print
- * @i: place in buffer
+ * @place: place in buffer
  * Return: count of chars printed
  */
 

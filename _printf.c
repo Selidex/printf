@@ -1,5 +1,12 @@
 #include "holberton.h"
 
+/**
+ * icount - counts chars printed
+ * @buffer: times going through buffer
+ * @place: place in buffer
+ * Return: void
+ */
+
 void icount(char *buffer, struct placement *place)
 {
 	if (place->i < 1023)
@@ -25,15 +32,14 @@ int _write(char *buffer, int n)
 }
 
 /**
- *
- *
- *
- *
+ * placeholder - initializes struct place
+ * Return: place
  */
 
 placement *placeholder(void)
 {
 	placement *place;
+
 	place = malloc(sizeof(placement));
 	if (place == NULL)
 		return (NULL);
