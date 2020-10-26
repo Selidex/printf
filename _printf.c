@@ -75,6 +75,8 @@ int _printf(const char *format, ...)
 	{
 		if (format[j] == '%')
 		{
+			while (format[j +1] == ' ')
+				j++;
 			count += choose(format[j + 1], ap, buffer, place);
 			j++;
 		}
