@@ -3,18 +3,13 @@
 /**
  * _write - writes buffer
  * @buffer: buffer to print
+ *@n: size of the buffer printed
  * Return: count of characters
  */
 
-int _write(char *buffer)
+int _write(char *buffer, int n)
 {
-	int i;
-
-	for (i = 0; buffer[i] != '\0'; i++)
-	{
-		write(1, &buffer[i], 1);
-	}
-	return (i);
+	return (write(1, buffer, n));
 }
 
 /**
@@ -52,7 +47,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	buffer[*i] = '\0';
-	count = _write(buffer);
+	count = _write(buffer, *i);
 	free(i);
 	return (count);
 }
