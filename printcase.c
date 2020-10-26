@@ -26,7 +26,8 @@ int printchar(char c, char *buffer, placement *place)
 int printstr(char *str, char *buffer, placement *place)
 {
 	int j;
-
+	if (str == NULL)
+		str = "(null)";
 	for (j = 0; str[j] != '\0'; j++)
 	{
 		buffer[place->i] = str[j];
