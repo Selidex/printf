@@ -49,28 +49,18 @@ placement *placeholder(void)
 }
 
 /**
- * _printf - produces output according to format
- * @format: format of input
- *
- * Return: number of chars printed
+ *_getflags - parses format for flags then sends ot select
+ *@format: the format string
+ *@buffer: place being printed
+ *@place: our print count
+ *@ap: list of arguments
+ *Return: our print count or -1 on fail
  */
 
-int _printf(const char *format, ...)
+int _getflags(const char *format, char *buffer, placement *place, va_list ap)
 {
-	va_list ap;
 	int count = 0, j = 0;
-	char *buffer;
-	struct placement *place;
 
-	buffer = malloc(1024);
-	if (!buffer)
-		return (-1);
-	place = placeholder();
-	if (!place)
-		return (-1);
-	if (format == NULL)
-		return (0);
-	va_start(ap, format);
 	for (; format[j] != '\0'; j++)
 	{
 		if (format[j] == '%')
@@ -80,8 +70,6 @@ int _printf(const char *format, ...)
 				if (format[j + 2] == '\0')
 				{
 					_write(buffer, place->i);
-					free(place);
-					free(buffer);
 					return (-1);
 				}
 				j++;
@@ -102,6 +90,33 @@ int _printf(const char *format, ...)
 		count = (place->i);
 	else
 		count = ((place->count * 1024) + place->i);
+	return (count);
+}
+
+/**
+ * _printf - produces output according to format
+ * @format: format of input
+ *
+ * Return: number of chars printed
+ */
+
+int _printf(const char *format, ...)
+{
+	va_list ap;
+	int count = 0;
+	char *buffer;
+	struct placement *place;
+
+	buffer = malloc(1024);
+	if (!buffer)
+		return (-1);
+	place = placeholder();
+	if (!place)
+		return (-1);
+	if (format == NULL)
+		return (0);
+	va_start(ap, format);
+	count = _getflags(format, buffer, place, ap);
 	free(place);
 	free(buffer);
 	return (count);
