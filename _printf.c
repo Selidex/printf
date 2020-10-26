@@ -87,8 +87,11 @@ int _printf(const char *format, ...)
 	}
 	buffer[place->i] = '\0';
 	_write(buffer, place->i);
-	count = ((place->count * 1024) + place->i);
+	if (place->count == 0)
+		count = (place->i);
+	else
+		count = ((place->count * 1024) + place->i);
 	free(place);
 	free(buffer);
-	return (count - 1);
+	return (count);
 }
