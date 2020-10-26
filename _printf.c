@@ -3,18 +3,13 @@
 /**
  * _write - writes buffer
  * @buffer: buffer to print
+ *@n: size of the buffer printed
  * Return: count of characters
  */
 
-int _write(char *buffer)
+int _write(char *buffer, int n)
 {
-	int i;
-
-	for (i = 0; buffer[i] != '\0'; i++)
-	{
-		write(1, &buffer[i], 1);
-	}
-	return (i);
+	return (write(1, buffer, n));
 }
 
 /**
@@ -28,8 +23,11 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	int count = 0, *i, j = 0;
-	char buffer[1024];
+	char *buffer;
 
+	buffer = malloc(1024);
+	if (!buffer)
+		return (-1);
 	i = malloc(sizeof(int));
 	if (!i)
 		return (-1);
@@ -52,7 +50,8 @@ int _printf(const char *format, ...)
 		}
 	}
 	buffer[*i] = '\0';
-	count = _write(buffer);
+	count = _write(buffer, *i);
 	free(i);
+	free(buffer);
 	return (count);
 }
