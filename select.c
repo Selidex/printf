@@ -26,6 +26,8 @@ int choose(const char c, va_list ap, char *buffer, placement *place)
 		buffer[place->i] = r;
 		icount(buffer, place);
 		return (1);
+	case 'b':
+		return (itob(va_arg(ap, unsigned int), buffer, place));
 	default:
 		r = '%';
 		buffer[place->i] = r;
