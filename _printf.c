@@ -121,6 +121,7 @@ int _printf(const char *format, ...)
 		return (0);
 	va_start(ap, format);
 	count = _getflags(format, buffer, place, ap);
+	va_end(ap);
 	free(place);
 	free(buffer);
 	return (count);
