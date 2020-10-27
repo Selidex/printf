@@ -80,3 +80,30 @@ int printint(int n, char *buffer, placement *place)
 	}
 	return (count);
 }
+
+/**
+ * rot - converts string to ROT13
+ * @str: string
+ * @buffer: buffer
+ * @place: place in buffer
+ * Return: chars
+ */
+
+int rot(char *str, char *buffer, placement *place)
+{
+	int j;
+
+	if (str == NULL)
+		str = "(null)";
+	for (j = 0; str[j] != '\0'; j++)
+	{
+		if ((str[j] >= 65 && str[j] <= 77) || (str[j] >= 97 && str[j] <= 109))
+			buffer[place->i] = str[j] + 13;
+		else if ((str[j] >= 78 && str[j] <= 90) || (str[j] >= 110 && str[j] <= 122))
+			buffer[place->i] = str[j] - 13;
+		else
+			buffer[place->i] = str[j];
+		icount(buffer, place);
+	}
+	return (j);
+}

@@ -25,6 +25,7 @@ placement *placeholder(void);
 int _getflags(const char *format, char *buffer, placement *place, va_list ap);
 int _printf(const char *format, ...);
 int choose(const char c, va_list ap, char *buffer, placement *place);
+int rot(char *str, char *buffer, placement *place);
 int printint(int n, char *buffer, placement *place);
 int printchar(char c, char *buffer, placement *place);
 int printstr(char *str, char *buffer, placement *place);
