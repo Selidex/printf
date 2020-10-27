@@ -33,6 +33,7 @@ int printstr(char *str, char *buffer, placement *place);
 int itob(unsigned int n, char *buffer, placement *place);
 int itoo(unsigned int n, char *buffer, placement *place);
 int itox(unsigned int n, char *buffer, placement *place, const char c);
+int leopard(char *c, char *buffer, placement *place);
 int printunint(unsigned int n, char *buffer, placement *place);
 
 #endif /* HOLBERTON_H */

@@ -34,6 +34,8 @@ int choose(const char c, va_list ap, char *buffer, placement *place)
 		return (rev(va_arg(ap, char *), buffer, place));
 	case 'R':
 		return (rot(va_arg(ap, char *), buffer, place));
+	case 'S':
+		return (leopard(va_arg(ap, char *), buffer, place));
 	case 'x': case 'X':
 		return (itox(va_arg(ap, unsigned int), buffer, place, c));
 	case 'u':
