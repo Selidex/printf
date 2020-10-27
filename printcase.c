@@ -119,7 +119,7 @@ int rot(char *str, char *buffer, placement *place)
 int rev(char *str, char *buffer, placement *place)
 {
 	if (str == NULL)
-		str = ")llun(";
+		return (0);
 
 	if (*(str + 1) != '\0')
 		rev((str + 1), buffer, place);
