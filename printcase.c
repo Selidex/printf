@@ -27,15 +27,12 @@ int printstr(char *str, char *buffer, placement *place)
 {
 	int j;
 
-	printf("Made it to print string\n");
-
 	if (str == NULL)
 	{
 		str = "(null)";
 	}
 	for (j = 0; str[j] != '\0'; j++)
 	{
-		printf("enter loop %d\n", j);
 		buffer[place->i] = str[j];
 		icount(buffer, place);
 	}
