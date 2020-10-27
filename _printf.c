@@ -107,7 +107,7 @@ int _printf(const char *format, ...)
 	char *buffer;
 	struct placement *place;
 
-	buffer = malloc(1024);
+	buffer = malloc(sizeof(char) * 1024);
 	if (!buffer)
 		return (-1);
 	place = placeholder();
