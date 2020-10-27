@@ -1,0 +1,112 @@
+.TH man 1 "26 October 2020" "1" "printf man page"
+.SH NAME
+.B _printf
+- produces output according to a format.
+.SH SYNOPSIS
+_printf
+.SH DESCRIPTION
+The
+.B _printf
+function writes output to stdout.
+
+.B Return value
+
+Upon success,
+.B _printf
+will return the number of characters printed, excluding the null byte at the end
+of a string. Upon failure,
+.B _printf
+will return a negative value.
+
+.B Flag characters
+
+.B u
+
+Converts unsigned int to unsigned decimal
+
+.B o
+
+Converts unsigned int to unsigned octal
+
+.B x, X
+
+Converts unsigned int to unsigned hexadecimal. The
+.B x
+specifier will use the letters
+.B abcdef
+while the
+.B X
+specifier will use the letters
+ABCDEF.
+
+.B +
+
+Replaces a space before a positive number produced by a signed conversion with a
+.B +
+.
+
+.B ' '
+
+(space) places a space before a positive number or empty string produced by a
+signed conversion.
+
+
+.B #
+
+Converts value to an alternate form. For
+.B o
+specifiers, a zero is prefixed to the beginning of output stream if it is not
+already zero. In
+.B x
+and
+.B X
+conversions, nonzero results are prefixed with "0x" and "0X", respectively.
+The
+.B a, A, e, E, f,
+and
+.B F
+conversions will always contain a decimal, even when there are no digits
+following the decimal point.
+.B g
+and
+.B G
+conversions will always contain a decimal point and all trailing zeros.
+
+
+.B Conversion specifiers
+
+.B p
+
+Prints the address of a pointer
+
+.B Custom Conversion specifiers
+
+.B b
+
+Converts unsigned int argument to binary
+
+.B S
+
+Prints a string, replacing all non printable characters as
+.B \ex
+followed by its ASCII code value in hexadecimal.
+
+.B r
+
+Prints a string in reverse
+
+.B R
+
+Converts a string to ROT13
+
+.SH OPTIONS
+.B _printf
+does not take any options.
+.SH SEE ALSO
+.B printf
+(3),
+.B scanf
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Aleia DeVore and Selidex Parnell
