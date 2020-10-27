@@ -99,7 +99,7 @@ int rot(char *str, char *buffer, placement *place)
 	{
 		if ((str[j] >= 65 && str[j] <= 77) || (str[j] >= 97 && str[j] <= 109))
 			buffer[place->i] = str[j] + 13;
-		else if ((str[j] >= 78 && str[j] <= 90) || (str[j] >= 110 && str[j] <= 122))
+      		else if ((str[j] >= 78 && str[j] <= 90) || (str[j] >= 110 && str[j] <= 122))
 			buffer[place->i] = str[j] - 13;
 		else
 			buffer[place->i] = str[j];
@@ -118,13 +118,20 @@ int rot(char *str, char *buffer, placement *place)
 
 int rev(char *str, char *buffer, placement *place)
 {
-	if (str == NULL)
-		return (0);
+	int strlen;
 
-	if (*(str + 1) != '\0')
-		rev((str + 1), buffer, place);
-	buffer[place->i] = *str;
-	icount(buffer, place);
+	if (str == NULL)
+	{
+		str = "(null)";
+	}
+	for (strlen = 0; str[strlen] != '\0'; strlen++)
+		;
+	strlen--;
+	for (; strlen >= 0; strlen--)
+	{
+		buffer[place->i] = str[strlen];
+		icount(buffer, place);
+	}
 	return (0);
 
 }
