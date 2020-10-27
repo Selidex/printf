@@ -63,7 +63,6 @@ int _getflags(const char *format, char *buffer, placement *place, va_list ap)
 			{
 				if (format[j + 2] == '\0')
 				{
-					_write(buffer, place->i);
 					return (-1);
 				}
 				j++;
