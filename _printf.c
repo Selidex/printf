@@ -9,6 +9,7 @@
 
 void icount(char *buffer, struct placement *place)
 {
+	(void) buffer;
 	if (place->i < 1023)
 		(place->i)++;
 }
