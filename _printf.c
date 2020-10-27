@@ -74,6 +74,11 @@ int _getflags(const char *format, char *buffer, placement *place, va_list ap)
 				}
 				j++;
 			}
+			if (format[j + 1] == '\0')
+			{
+				_write(buffer, place->i);
+				return (-1);
+			}
 			count += choose(format[j + 1], ap, buffer, place);
 			j++;
 		}
