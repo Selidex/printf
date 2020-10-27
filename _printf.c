@@ -11,11 +11,6 @@ void icount(char *buffer, struct placement *place)
 {
 	if (place->i < 1023)
 		(place->i)++;
-	else
-	{
-		buffer[place->i] = '\0';
-		_write(buffer, place->i);
-	}
 }
 
 /**
