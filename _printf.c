@@ -13,9 +13,8 @@ void icount(char *buffer, struct placement *place)
 		(place->i)++;
 	else
 	{
+		buffer[place->i] = '\0';
 		_write(buffer, place->i);
-		place->i = 0;
-		(place->count)++;
 	}
 }
 
