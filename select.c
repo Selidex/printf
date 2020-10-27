@@ -28,6 +28,12 @@ int choose(const char c, va_list ap, char *buffer, placement *place)
 		return (1);
 	case 'b':
 		return (itob(va_arg(ap, unsigned int), buffer, place));
+	case 'o':
+		return (itoo(va_arg(ap, unsigned int), buffer, place));
+	case 'x': case 'X':
+		return (itox(va_arg(ap, unsigned int), buffer, place, c));
+	case 'u':
+		return (printunint(va_arg(ap, unsigned int), buffer, place));
 	default:
 		r = '%';
 		buffer[place->i] = r;
