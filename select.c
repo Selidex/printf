@@ -30,6 +30,8 @@ int choose(const char c, va_list ap, char *buffer, placement *place)
 		return (itob(va_arg(ap, unsigned int), buffer, place));
 	case 'o':
 		return (itoo(va_arg(ap, unsigned int), buffer, place));
+	case 'r':
+		return (rev(va_arg(ap, char *), buffer, place));
 	case 'R':
 		return (rot(va_arg(ap, char *), buffer, place));
 	case 'x': case 'X':

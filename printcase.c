@@ -107,3 +107,24 @@ int rot(char *str, char *buffer, placement *place)
 	}
 	return (j);
 }
+
+/**
+ *rev - prints a string in reverse
+ *@str: the string to reverse
+ *@buffer: place to write code
+ *@place: index in buffer
+ *Return: number of things printed
+ */
+
+int rev(char *str, char *buffer, placement *place)
+{
+	if (str == NULL)
+		str = "(null)";
+
+	if (*(str + 1) != '\0')
+		rev((str + 1), buffer, place);
+	buffer[place->i] = *str;
+	icount(buffer, place);
+	return (0);
+
+}
