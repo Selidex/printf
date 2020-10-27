@@ -20,6 +20,11 @@ int leopard(char *c, char *buffer, placement *place)
 			icount(buffer, place);
 			buffer[place->i] = 'x';
 			icount(buffer, place);
+			if (c[j] < 16)
+			{
+				buffer[place->i] = '0';
+				icount(buffer, place);
+			}
 			itox(c[j], buffer, place, 'X');
 		}
 		else
