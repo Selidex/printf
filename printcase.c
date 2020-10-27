@@ -97,9 +97,11 @@ int rot(char *str, char *buffer, placement *place)
 		str = "(null)";
 	for (j = 0; str[j] != '\0'; j++)
 	{
-		if ((str[j] >= 65 && str[j] <= 77) || (str[j] >= 97 && str[j] <= 109))
+		if ((str[j] >= 65 && str[j] <= 77) || (str[j] >= 97 && str[j]
+						       <= 109))
 			buffer[place->i] = str[j] + 13;
-      		else if ((str[j] >= 78 && str[j] <= 90) || (str[j] >= 110 && str[j] <= 122))
+		else if ((str[j] >= 78 && str[j] <= 90) || (str[j] >= 110 &&
+							    str[j] <= 122))
 			buffer[place->i] = str[j] - 13;
 		else
 			buffer[place->i] = str[j];
