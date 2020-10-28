@@ -1,5 +1,14 @@
 #include "holberton.h"
 
+/**
+ * itox_l - converts long int to hex
+ * @n: unsigned int
+ * @buffer: buffer
+ * @place: place in buffer
+ * @c: x or X to determine case
+ * Return: count
+ */
+
 int itox_l(unsigned long int n, char *buffer, placement *place, const char c)
 {
 	int i, count, k;
