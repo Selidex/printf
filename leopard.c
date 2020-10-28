@@ -48,6 +48,11 @@ int address(void *ptr, char *buffer, placement *place)
 {
 	unsigned long int k = (unsigned long int)ptr;
 
+	if (k == 0)
+	{
+		printstr("(nil)", buffer, place);
+		return (0);
+	}
 	buffer[place->i] = '0';
 	icount(buffer, place);
 	buffer[place->i] = 'x';
