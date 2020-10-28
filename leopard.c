@@ -36,6 +36,14 @@ int leopard(char *c, char *buffer, placement *place)
 	return (1);
 }
 
+/**
+ * address - prints address of pointer
+ * @ptr: pointer
+ * @buffer: buffer
+ * @place: place in buffer
+ * Return: 1
+ */
+
 int address(void *ptr, char *buffer, placement *place)
 {
 	unsigned long int k = (unsigned long int)ptr;
