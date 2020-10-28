@@ -35,3 +35,17 @@ int leopard(char *c, char *buffer, placement *place)
 	}
 	return (1);
 }
+
+int address(void *ptr, char *buffer, placement *place)
+{
+	unsigned long int k = (unsigned long int)ptr;
+
+	buffer[place->i] = '0';
+	icount(buffer, place);
+	buffer[place->i] = 'x';
+	icount(buffer, place);
+	itox_l(k, buffer, place, 'x');
+
+
+	return (1);
+}
