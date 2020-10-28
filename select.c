@@ -51,3 +51,8 @@ int choose(const char c, va_list ap, char *buffer, placement *place)
 		return (2);
 	}
 }
+
+int choosetag()
+{
+	
+}

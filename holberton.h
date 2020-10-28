@@ -19,6 +19,21 @@ typedef struct placement
 	int count;
 } placement;
 
+/**
+ *struct fakebool - a grouping of fake bools
+ *@bcon: conflict bool
+ *@btag: tag bool
+ *@l: l/h bool
+ *@d: . bool
+ *@n: w/p bool
+ *@w: width flag
+ *@p: precision flag
+ */
+struct fakebool
+{
+	int bcon, btag, l, d, n, w, p;
+};
+
 void icount(char *buffer, struct placement *place);
 int _write(char *buffer, int n);
 placement *placeholder(void);

@@ -1,22 +1,6 @@
 #include "holberton.h"
 
 /**
- *struct fakebool - a grouping of fake bools
- *@bcon: conflict bool
- *@btag: tag bool
- *@l: l/h bool
- *@d: . bool
- *@n: w/p bool
- *@w: width flag
- *@p: precision flag
- */
-struct fakebool
-{
-	int bcon, btag, l, d, n, w, p;
-};
-
-
-/**
  * pad - handles pad based flags
  * @form: format
  * @flag: arry of current flags
@@ -45,21 +29,71 @@ void pad(char form, char *flag, fakebool *t)
 }
 
 /**
- *digit - handles width and precision flags
- *@form: format
- *@flag: array of existing flags
- *@t: fake boolian
- *Return: void no return
- */
-
-void digit(char form, char *flag, fakebool *t)
+*tag - handles finding conversion specifiers
+*@form: the char being tested
+*@flag: all flags currently found
+*@fakebool: struct of fake boolians
+*/
+void tag(char form, char *flag, fakebool *t)
 {
-	if ((form >= '0' && form <= '9') && t->l != 0)
-		t->bcon = 1;
-	else if ((form >= '0' && form <= '9') && d == 0)
-		for (; form[j] >= '0' && form[j] <= '9'; j++)
+	int j;
+	char tag[] = {'d', 'i', 'o', 'u', 'x', 'X', 'c', 's', 'p'};
+
+	for (j = 0; btag == 0 && j < 9; j++)
+	{
+		if (form == tag[j])
+		{
+			flag[6] = format[j];
+			t->btag = 1;
+		}
+	}
 }
 
+/**
+ *lh - checks for l or h flags
+ *@form: the letter being checked
+ *@flag: array of existing flags
+ *@fakebool: group of fake bools
+ *Return: void no return
+ */
+void lh(char form, char *flag, fakebool *t)
+{
+	if ((form == 'l' || form == 'h') && t->l != 0)
+	{
+		t->bcon = 1;
+	}
+	else if(form == 'l' || form == 'h')
+	{
+		flag[5] = form[j];
+		t->l = 1;
+	}
+}
+
+/**
+ *digit - handles number flags
+ *@form: string of potential tags
+ *@flag: array of already discovered flags
+ *@t: group of fake boolians
+ *Return: the number that form has been incremented
+ */
+int digit(char *form, char *flag, fakebool *t)
+{
+	int j = 0;
+	if ((form[j] >= '0' && form[j] <= '9') && t->l != 0)
+		t->bcon = 1;
+	else if ((form[j] >= '0' && form[j] <= '9') && t->d == 0)
+		for (; form[j] >= '0' && form[j] <= '9'; j++)
+				t->w = (t->w * 10) + (form[j] - '0');
+	if (form[j] == '.' && (t->d != 0 || t->l != 0))
+		t->bcon = 1;
+	else if (form[j] == '.')
+	{
+		for (; form[j] >= '0' && form[j] <= '9'; j++)
+			t->p = (t->p * 10) + (form[j] - '0');
+		t->d = 1;
+	}
+	return (j);
+}
 
 /**
  * findflag - finds flags, field width, and precision
@@ -69,50 +103,30 @@ void digit(char form, char *flag, fakebool *t)
  * @place: index in buffer
  * Return: 1
  */
-
 int findflag(char *form, va_list ap, char *buffer, placement *place)
 {
-	int j, jp;
-	char tag[] = {'d', 'i', 'o', 'u', 'x', 'X', 'c', 's', 'p'};
+	int j;
 	char flag[7] = {'z', 'z', 'z', 'z', 'z', 'z', 'z'};
 	fakebool *test;
-	for (j = 0; test->btag == 0; j++)
+
+	test = maker();
+	for (j = 0; test->btag == 0 && form[j] != '\0'; j++)
 	{
-		pad(format[j], flag, test);
-
-
-
-				for (; form[j] >= '0' && form[j] <= '9'; j++)
-				w = (w * 10) + (form[j] - '0');	}
-
-		if (form[j] == '.' && (d != 0 || l != 0))
-			bcon = 1;
-		else if (form[j] == '.')
+		if (form[j] != 'l' && form[j] != 'h')
 		{
-			for (; form[j] >= '0' && form[j] <= '9'; j++)
-				p = (p * 10) + (form[j] - '0');
-			d = 1; }
 
-		if (form[j] == 'l' || form[j] == 'h')
-		{
-			flag[5] = form[j];
-			l = 1; }
-
-		for (j2 = 0; btag == 0 && j2 < 9; j2++)
-		{
-			if (format[j] == tag[j2])
-			{ flag[6] = format[j];
-				btag = 1; } }
-		if (form[j] == '%')
-		{
-			buffer[place->i] = '%';
-			icount(buffer, place);
-			return (j + 1);
 		}
-
-		if (bcon == 1)
+		pad(form[j], flag, test);
+		j += digit((form + j), flag, test);
+		lh(form[j], flag, test);
+		tag(form[j], flag, test);
+		if (form[j] == '%')
+			return (j + choose('%', ap, buffer, place));
+		if (test->bcon == 1)
 		{
 
 		}
 	}
+	if (form[j] == '\0')
+		return (-1);
 }
