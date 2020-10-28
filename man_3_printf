@@ -20,35 +20,18 @@ will return a negative value.
 
 .B Flag characters
 
-.B u
-
-Converts unsigned int to unsigned decimal
-
-.B o
-
-Converts unsigned int to unsigned octal
-
-.B x, X
-
-Converts unsigned int to unsigned hexadecimal. The
-.B x
-specifier will use the letters
-.B abcdef
-while the
-.B X
-specifier will use the letters
-ABCDEF.
-
 .B +
 
 Replaces a space before a positive number produced by a signed conversion with a
 .B +
-.
+
 
 .B ' '
 
 (space) places a space before a positive number or empty string produced by a
-signed conversion.
+signed conversion. If used with a
+.B +
+this command is overwritten
 
 
 .B #
@@ -72,6 +55,47 @@ and
 .B G
 conversions will always contain a decimal point and all trailing zeros.
 
+.B -
+
+Output is left-justified. When used with a
+.B 0
+the
+.B 0
+is overwritten.
+
+.B 0
+
+Pads the left side of
+.B d, i, o, u, x, X
+with zeros. If given with a
+.B -
+or
+.B precision,
+the
+.B 0
+is ignored.
+
+.B The precision
+
+Gives the minimum number of digits in ints of
+.B d, i, o, u, x,
+and
+.B X
+or the maximum number of characters printed for
+.B s
+and
+.B S
+strings
+
+.B Length modifiers
+
+.B l
+
+Corresponds with a long int
+
+.B h
+
+Corresponds with short int
 
 .B Conversion specifiers
 
@@ -86,6 +110,33 @@ Prints a string
 .B %
 
 Prints the character '%'
+
+.B d
+
+Prints a signed integer
+
+.B i
+
+Prints a signed integer
+
+.B u
+
+Converts unsigned int to unsigned decimal
+
+.B o
+
+Converts unsigned int to unsigned octal
+
+.B x, X
+
+Converts unsigned int to unsigned hexadecimal. The
+.B x
+specifier will use the letters
+.B abcdef
+while the
+.B X
+specifier will use the letters
+ABCDEF.
 
 .B p
 
