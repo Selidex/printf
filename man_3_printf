@@ -75,6 +75,18 @@ conversions will always contain a decimal point and all trailing zeros.
 
 .B Conversion specifiers
 
+.B c
+
+Prints a character
+
+.B s
+
+Prints a string
+
+.B %
+
+Prints the character '%'
+
 .B p
 
 Prints the address of a pointer
